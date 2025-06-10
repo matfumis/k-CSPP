@@ -33,15 +33,11 @@ def solve_colour_constrained_dijkstra(graph, source, destination, k):
     mean_edge_cost,
     max_edge_cost
   ]
-  print('penalties not sorted = ', penalties_list)
 
-  penalties_list.sort()
-  print('penalties sorted = ', penalties_list)
 
   for penalty in penalties_list:
     solution = penalised_dijkstra(graph, source, destination, penalty)
     if solution and len(solution.used_colours) <= k:
-      print('penalty =' , penalty)
       return solution, True if penalty == 0 else False
 
   return None, None

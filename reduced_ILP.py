@@ -3,7 +3,7 @@ from formulation import solve_k_cspp_formulation
 from graph_reduction_algorithm import graph_reduction
 import time
 
-def reducedILP_algorithm(instance):
+def reduced_ILP_algorithm(instance):
   start_time = time.time()
   graph, source, destination, k = instance.get_parameters()
 
