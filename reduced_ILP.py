@@ -7,6 +7,8 @@ def reduced_ILP_algorithm(instance):
   start_time = time.time()
   graph, source, destination, k = instance.get_parameters()
 
+  print(f'Solving {instance.to_string()}\n')
+
   print('Performing Colour Constrained Dijkstra Algorithm...')
   initial_solution, is_best_tour = solve_colour_constrained_dijkstra(graph, source, destination, k)
 

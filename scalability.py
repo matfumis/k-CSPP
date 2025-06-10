@@ -1,0 +1,155 @@
+import os
+from matplotlib.ticker import MultipleLocator
+from natsort import natsorted
+import numpy as np
+from k_CSPP_instance import k_CSPP_instance
+from reduced_ILP import reduced_ILP_algorithm
+import matplotlib.pyplot as plt
+
+
+
+def save_results(set_type, instance_type):
+  instances = 'instances/SET_' + set_type + '/' + instance_type
+  results = 'results/SET_' + set_type + '/' + instance_type
+
+  for directory in natsorted(os.listdir(instances)):
+    if not os.path.isdir(os.path.join(results, directory)):
+      os.makedirs(os.path.join(results, directory))
+
+    for file in natsorted(os.listdir(os.path.join(instances, directory))):
+      input_file = os.path.join(instances, directory, file)
+      output_file = os.path.join(results, directory, file)
+
+      instance = k_CSPP_instance(input_file)
+      optimal_solution, time_ccda, total_time, gap, removed_nodes_percentage, removed_arcs_percentage = reduced_ILP_algorithm(instance)
+
+      with open(output_file, 'w') as f:
+        if not optimal_solution:
+          f.write(
+            'No solution found' +
+            '\nTime Colour Constrained Dijkstra Algorithm: ' + str(time_ccda) +
+            '\nTotal time: ' + str(total_time)
+          )
+        else:
+          f.write(
+            optimal_solution.to_string() +
+            '\nTime Colour Constrained Dijkstra Algorithm: ' + str(time_ccda) +
+            '\nTotal time: ' + str(total_time) +
+            '\nGap: ' + str(gap) +
+            '\nRemoved nodes percentage: ' + str(removed_nodes_percentage) +
+            '\nRemoved arcs percentage: ' + str(removed_arcs_percentage)
+          )
+
+      print('\n=================================================================================\n\n')
+
+
+def read_results(set_type, instance_type):
+  results = 'results/SET_' + set_type + '/' + instance_type
+  mean_computational_times_ccda = []
+  mean_computational_times = []
+  mean_gaps = []
+  mean_removed_nodes_percentages = []
+  mean_removed_arcs_percentages = []
+
+  for directory in os.listdir(results):
+    computational_times_ccda = []
+    computational_times = []
+    gaps = []
+    removed_nodes_percentages = []
+    removed_arcs_percentages = []
+
+    for file in os.listdir(os.path.join(results, directory)):
+      file_to_read = os.path.join(results, directory, file)
+
+      with open(file_to_read, 'r') as f:
+        lines = f.readlines()
+
+
+      for line in lines:
+
+        if 'Time Colour Constrained Dijkstra Algorithm: ' in line:
+          time_ccda = float(line.split(':')[1].strip())
+          computational_times_ccda.append(time_ccda)
+        elif 'Total time: ' in line:
+          total_time = float(line.split(':')[1].strip())
+          computational_times.append(total_time)
+        elif 'Gap: ' in line:
+          gap = float(line.split(':')[1].strip())
+          gaps.append(gap)
+        elif 'Removed nodes percentage: ' in line:
+          removed_nodes_percentage = float(line.split(':')[1].strip())
+          removed_nodes_percentages.append(removed_nodes_percentage)
+        elif 'Removed arcs percentage: ' in line:
+          removed_arcs_percentage = float(line.split(':')[1].strip())
+          removed_arcs_percentages.append(removed_arcs_percentage)
+
+
+    mean_computational_times_ccda.append(np.mean(computational_times_ccda))
+    mean_computational_times.append(np.mean(computational_times))
+    mean_gaps.append(np.mean(gaps))
+    mean_removed_nodes_percentages.append(np.mean(removed_nodes_percentages))
+    mean_removed_arcs_percentages.append(np.mean(removed_arcs_percentages))
+
+  return mean_computational_times_ccda, mean_computational_times, mean_gaps, mean_removed_nodes_percentages, mean_removed_arcs_percentages
+
+
+
+def save_image(list_A, list_B, instance_type, image_name):
+  n = len(list_A)
+  x_labels = [f"{instance_type}{i + 1}" for i in range(n)]
+  x = list(range(n))
+
+  fig, ax = plt.subplots(figsize=(8, 5))
+  ax.scatter(x, list_A, label='Set A')
+  ax.scatter(x, list_B, label='Set B')
+
+  ax.xaxis.set_major_locator(MultipleLocator(1))
+  ax.set_xticks(x)
+  ax.set_xticklabels(x_labels)
+
+  ax.yaxis.set_major_locator(MultipleLocator(0.5))
+
+  ax.set_xlabel('Instance')
+  ax.set_ylabel(image_name)
+  ax.set_title(
+    f"{image_name}  ({'Grid' if instance_type == 'G' else 'Random'})"
+  )
+  ax.legend()
+  fig.tight_layout()
+
+  filename = f"images/{image_name}_{'Grid' if instance_type == 'G' else 'Random'}.png"
+  fig.savefig(filename)
+  plt.show()
+
+
+
+def main():
+
+  save_results('B', 'Grid')
+  save_results('B', 'Random')
+  save_results('A', 'Grid')
+  save_results('A', 'Random')
+
+  mean_computational_times_ccda_A_Grid, mean_computational_times_A_Grid, mean_gaps_A_Grid, mean_removed_nodes_percentages_A_Grid, mean_removed_arcs_percentages_A_Grid = read_results('A', 'Grid')
+  mean_computational_times_ccda_B_Grid, mean_computational_times_B_Grid, mean_gaps_B_Grid, mean_removed_nodes_percentages_B_Grid, mean_removed_arcs_percentages_B_Grid = read_results('B', 'Grid')
+  mean_computational_times_ccda_A_Random, mean_computational_times_A_Random, mean_gaps_A_Random, mean_removed_nodes_percentages_A_Random, mean_removed_arcs_percentages_A_Random = read_results('A', 'Random')
+  mean_computational_times_ccda_B_Random, mean_computational_times_B_Random, mean_gaps_B_Random, mean_removed_nodes_percentages_B_Random, mean_removed_arcs_percentages_B_Random = read_results('B','Random')
+
+
+  save_image(mean_computational_times_ccda_A_Grid, mean_computational_times_ccda_B_Grid, 'G', 'mean_computational_times_ccda')
+  save_image(mean_computational_times_A_Grid, mean_computational_times_B_Grid, 'G', 'mean_computational_times_')
+  save_image(mean_gaps_A_Grid, mean_gaps_B_Grid, 'G', 'mean_gaps')
+  save_image(mean_removed_nodes_percentages_A_Grid, mean_removed_nodes_percentages_B_Grid, 'G', 'mean_removed_nodes_percentage')
+  save_image(mean_removed_arcs_percentages_A_Grid, mean_removed_arcs_percentages_B_Grid, 'G', 'mean_removed_arcs_percentage')
+
+  save_image(mean_computational_times_ccda_A_Random, mean_computational_times_ccda_B_Random, 'R', 'mean_computational_times_ccda')
+  save_image(mean_computational_times_A_Random, mean_computational_times_B_Random, 'R', 'mean_computational_times')
+  save_image(mean_gaps_A_Random, mean_gaps_B_Random, 'R', 'mean_gaps')
+  save_image(mean_removed_nodes_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_nodes_percentage')
+  save_image(mean_removed_arcs_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_arcs_percentage')
+
+
+
+
+if __name__ == '__main__':
+    main()
