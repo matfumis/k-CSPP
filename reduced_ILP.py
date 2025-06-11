@@ -17,7 +17,7 @@ def reduced_ILP_algorithm(instance):
   if not initial_solution:
     print(f'No solution found with at most {k} colours\n')
     print(f'Total time: {time_ccda}\n')
-    return None, None, None, None, None, None
+    return None, time_ccda, None, None, None, None
 
   print(f'Initial solution found in {time_ccda} seconds.\n{initial_solution.to_string()}\n')
 
@@ -39,11 +39,11 @@ def reduced_ILP_algorithm(instance):
   print('Solving formulation...')
   optimal_solution = solve_k_cspp_formulation(reduced_graph, source, destination, k)
 
+  total_time = round(time.time() - start_time, 2)
+
   if not optimal_solution:
     print('No optimal solution found\n')
-    return None, None, None, None, None, None
-
-  total_time = round(time.time() - start_time, 2)
+    return None, total_time, None, None, None, None
 
   print(f'Optimal solution found: \n{optimal_solution.to_string()}\n')
 

@@ -21,11 +21,8 @@ def solve_colour_constrained_dijkstra(graph, source, destination, k):
 
   penalties_list = [
     0,
-    min_edge_cost / 8, # aggiunto
-    min_edge_cost / 6, # aggiunto
     min_edge_cost / 4,
     min_edge_cost / 2,
-    min_edge_cost * 3 / 4,  # aggiunto
     min_edge_cost,
     min_edge_cost * 2,
     mean_edge_cost / 4,
