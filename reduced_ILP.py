@@ -56,4 +56,4 @@ def reduced_ILP_algorithm(instance):
 
 
 def compute_gap(initial_solution, optimal_solution):
-  return (initial_solution.cost - optimal_solution.cost) / initial_solution.cost
+  return 100 * (initial_solution.cost - optimal_solution.cost) / optimal_solution.cost
