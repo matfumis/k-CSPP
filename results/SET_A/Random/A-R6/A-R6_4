@@ -1,0 +1,14 @@
+Path
+  - source node: 58498
+  - destination node: 61581
+  - path: [58498, 73896, 41314, 7636, 52872, 61581]
+  - number of used nodes: 6
+  - cost: 99
+Colours
+  - colours: [186117, 113144, 206781, 73028, 13154]
+  - number of used colours: 5
+Time Colour Constrained Dijkstra Algorithm: 5.89
+Total time: 10.68
+Gap: 0.0
+Removed nodes percentage: 99.96133333333333
+Removed arcs percentage: 99.99773300084013
