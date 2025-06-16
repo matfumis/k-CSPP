@@ -1,0 +1,15 @@
+Path
+  - source node: 27521
+  - destination node: 33032
+  - path: [27521, 30739, 118256, 20894, 29044, 33032]
+  - number of used nodes: 6
+  - cost: 96
+Colours
+  - colours: [17421, 3635, 1012, 6935, 10045]
+  - number of used colours: 5
+Time Colour Constrained Dijkstra Algorithm: 12.46
+Formulation time (on reduced graph): 19.0
+Total time: 31.46
+Gap: 0.0
+Removed nodes percentage: 99.99040000000001
+Removed arcs percentage: 99.99935995801324
