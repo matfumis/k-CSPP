@@ -5,11 +5,10 @@ Path
   - number of used nodes: 5
   - cost: 124
 Colours
-  - colours: [1666, 29059, 9405, 28494, 23540]
+  - colours: [29570, 29059, 9405, 28494, 23540]
   - number of used colours: 5
-Time Colour Constrained Dijkstra Algorithm: 27.68
-Formulation time (on reduced graph): 25.09
-Total time: 52.77
+Time Colour Constrained Dijkstra Algorithm: 5.99
+Total time: 11.62
 Gap: 0.0
 Removed nodes percentage: 99.97399999999999
 Removed arcs percentage: 99.99806650683124
