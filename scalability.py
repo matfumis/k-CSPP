@@ -32,19 +32,25 @@ def save_results(set_type, instance_type):
 def read_results(set_type, instance_type):
   results = 'results/SET_' + set_type + '/' + instance_type
   mean_computational_times_ccda = []
-  mean_computational_times = []
+  mean_computational_times_reduction_algorithm = []
+  mean_computational_times_formulation = []
+  mean_computational_total_times = []
   mean_gaps = []
   mean_removed_nodes_percentages = []
   mean_removed_arcs_percentages = []
+  mean_more_removed_arcs_percentages = []
 
-  for directory in os.listdir(results):
+  for directory in natsorted(os.listdir(results)):
     computational_times_ccda = []
+    computational_times_reduction_algorithm = []
+    computational_times_formulation = []
     computational_times = []
     gaps = []
     removed_nodes_percentages = []
     removed_arcs_percentages = []
+    more_removed_arcs_percentages = []
 
-    for file in os.listdir(os.path.join(results, directory)):
+    for file in natsorted(os.listdir(os.path.join(results, directory))):
       file_to_read = os.path.join(results, directory, file)
 
       with open(file_to_read, 'r') as f:
@@ -53,32 +59,46 @@ def read_results(set_type, instance_type):
 
       for line in lines:
 
-        if 'Time Colour Constrained Dijkstra Algorithm: ' in line:
+        if 'Time Colour Constrained Dijkstra Algorithm' in line:
           time_ccda = float(line.split(':')[1].strip())
           computational_times_ccda.append(time_ccda)
-        elif 'Total time: ' in line:
+        elif 'Time Reduction Algorithm' in line:
+          time_reduction_algorithm = float(line.split(':')[1].strip())
+          computational_times_reduction_algorithm.append(time_reduction_algorithm)
+        elif 'Time Formulation' in line:
+          time_formulation = float(line.split(':')[1].strip())
+          computational_times_formulation.append(time_formulation)
+        elif 'Total time' in line:
           total_time = float(line.split(':')[1].strip())
           computational_times.append(total_time)
-        elif 'Gap: ' in line:
+        elif 'Gap' in line:
           gap = float(line.split(':')[1].strip())
           gaps.append(gap)
-        elif 'Removed nodes percentage: ' in line:
+        elif 'Removed nodes percentage' in line:
           removed_nodes_percentage = float(line.split(':')[1].strip())
           if removed_nodes_percentage != -1:
             removed_nodes_percentages.append(removed_nodes_percentage)
-        elif 'Removed arcs percentage: ' in line:
+        elif 'Removed arcs percentage' in line and 'More' not in line:
           removed_arcs_percentage = float(line.split(':')[1].strip())
           if removed_arcs_percentage != -1:
             removed_arcs_percentages.append(removed_arcs_percentage)
+        elif 'More Removed arcs percentage' in line:
+          more_removed_arcs_percentage = float(line.split(':')[1].strip())
+          if more_removed_arcs_percentage != -1:
+            more_removed_arcs_percentages.append(more_removed_arcs_percentage)
 
 
     mean_computational_times_ccda.append(np.mean(computational_times_ccda))
-    mean_computational_times.append(np.mean(computational_times))
+    mean_computational_times_reduction_algorithm.append(np.mean(computational_times_reduction_algorithm))
+    mean_computational_times_formulation.append(np.mean(computational_times))
+    mean_computational_total_times.append(np.mean(computational_times))
     mean_gaps.append(np.mean(gaps))
     mean_removed_nodes_percentages.append(np.mean(removed_nodes_percentages))
     mean_removed_arcs_percentages.append(np.mean(removed_arcs_percentages))
+    mean_more_removed_arcs_percentages.append(np.mean(more_removed_arcs_percentages))
 
-  return mean_computational_times_ccda, mean_computational_times, mean_gaps, mean_removed_nodes_percentages, mean_removed_arcs_percentages
+  return (mean_computational_times_ccda, mean_computational_times_reduction_algorithm, mean_computational_times_formulation,
+          mean_computational_total_times, mean_gaps, mean_removed_nodes_percentages, mean_removed_arcs_percentages, mean_more_removed_arcs_percentages)
 
 
 
@@ -123,22 +143,29 @@ def save_image(list_A, list_B, instance_type, image_name):
 
 def main():
 
-  save_results('B', 'Grid') # DONE
+  # save_results('B', 'Grid') # DONE
   # save_results('B', 'Random') # TO FINISH
-  save_results('A', 'Grid') # DONE
+  # save_results('A', 'Grid') # DONE
   # save_results('A', 'Random') # DONE
 
-  mean_computational_times_ccda_A_Grid, mean_computational_times_A_Grid, mean_gaps_A_Grid, mean_removed_nodes_percentages_A_Grid, mean_removed_arcs_percentages_A_Grid = read_results('A', 'Grid')
-  mean_computational_times_ccda_B_Grid, mean_computational_times_B_Grid, mean_gaps_B_Grid, mean_removed_nodes_percentages_B_Grid, mean_removed_arcs_percentages_B_Grid = read_results('B', 'Grid')
+  (mean_computational_times_ccda_A_Grid, mean_computational_times_reduction_algorithm_A_Grid, mean_computational_times_formulation_A_Grid,
+   mean_computational_times_A_Grid, mean_gaps_A_Grid, mean_removed_nodes_percentages_A_Grid, mean_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_A_Grid) = read_results('A', 'Grid')
+
+  (mean_computational_times_ccda_B_Grid, mean_computational_times_reduction_algorithm_B_Grid, mean_computational_times_formulation_B_Grid,
+   mean_computational_times_B_Grid, mean_gaps_B_Grid, mean_removed_nodes_percentages_B_Grid, mean_removed_arcs_percentages_B_Grid, mean_more_removed_arcs_percentages_B_Grid) = read_results('B', 'Grid')
   # mean_computational_times_ccda_A_Random, mean_computational_times_A_Random, mean_gaps_A_Random, mean_removed_nodes_percentages_A_Random, mean_removed_arcs_percentages_A_Random = read_results('A', 'Random')
   # mean_computational_times_ccda_B_Random, mean_computational_times_B_Random, mean_gaps_B_Random, mean_removed_nodes_percentages_B_Random, mean_removed_arcs_percentages_B_Random = read_results('B','Random')
 
 
   save_image(mean_computational_times_ccda_A_Grid, mean_computational_times_ccda_B_Grid, 'G', 'mean_computational_times_ccda')
-  save_image(mean_computational_times_A_Grid, mean_computational_times_B_Grid, 'G', 'mean_computational_times_')
+  save_image(mean_computational_times_reduction_algorithm_A_Grid, mean_computational_times_reduction_algorithm_B_Grid, 'G', 'mean_computational_times_reduction_algorithm')
+  save_image(mean_computational_times_formulation_A_Grid, mean_computational_times_formulation_B_Grid, 'G', 'mean_computational_times_formulation_reduced')
+  save_image(mean_computational_times_A_Grid, mean_computational_times_B_Grid, 'G', 'mean_computational_total_times_')
   save_image(mean_gaps_A_Grid, mean_gaps_B_Grid, 'G', 'mean_gaps')
   save_image(mean_removed_nodes_percentages_A_Grid, mean_removed_nodes_percentages_B_Grid, 'G', 'mean_removed_nodes_percentage')
   save_image(mean_removed_arcs_percentages_A_Grid, mean_removed_arcs_percentages_B_Grid, 'G', 'mean_removed_arcs_percentage')
+  save_image(mean_more_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_B_Grid, 'G', 'mean_more_removed_arcs_percentage')
+
 
   # save_image(mean_computational_times_ccda_A_Random, mean_computational_times_ccda_B_Random, 'R', 'mean_computational_times_ccda')
   # save_image(mean_computational_times_A_Random, mean_computational_times_B_Random, 'R', 'mean_computational_times')
