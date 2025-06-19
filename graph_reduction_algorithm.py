@@ -24,7 +24,7 @@ def graph_reduction(graph, source, destination, initial_solution):
 
     # If either is ∞, or if distance_from_source_to_node + distance_to_destination > upper bound, we remove node
     if (distance_from_source_to_node == float('inf') or distance_to_destination == float('inf') or
-        (distance_from_source_to_node + distance_to_destination) > upper_bound):    # TODO usa il >= !!!!!!!!!!!!!!!!!!!!!!
+        (distance_from_source_to_node + distance_to_destination) >= upper_bound):    # TODO usa il >= !!!!!!!!!!!!!!!!!!!!!!
       nodes_to_remove.append(node)
 
   # 4) Create a copy of G, remove all flagged nodes
@@ -53,18 +53,12 @@ def graph_reduction(graph, source, destination, initial_solution):
       edge_reverse = (neighbor, node)
 
       if total_distance > upper_bound:
-        if edges_counter.get(edge_direct, None) is None:
-          edges_counter[edge_direct] = 1
-          edges_counter[edge_reverse] = 1
+        # incrementa il contatore, partendo da 0 se non esiste
+        edges_counter[edge_direct] = edges_counter.get(edge_direct, 0) + 1
+        edges_counter[edge_reverse] = edges_counter.get(edge_reverse, 0) + 1
 
-        # todo Se entra in questo ramo allora la condizione ... is not None è sempre vera
-        elif edges_counter.get(edge_reverse, None) is not None:
-          edges_counter[edge_direct] += 1
-          edges_counter[edge_reverse] += 1
-
-        # todo da rimuovere la prima condizione, se è entrato nel primo ramo allora la crea e quindi esiste, se enta nel secondo ramo
-        # vuol dire che esiste già
-        if edges_counter[edge_direct] is not None and edges_counter[edge_direct] == 2:
+        # alla seconda volta, segnala l'arco da rimuovere
+        if edges_counter[edge_direct] == 2:
           edges_to_remove.append((node, neighbor))
 
   even_more_reduced_graph.remove_edges_from(edges_to_remove)
