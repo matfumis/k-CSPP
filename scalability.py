@@ -21,24 +21,10 @@ def save_results(set_type, instance_type):
       output_file = os.path.join(results, directory, file)
 
       instance = k_CSPP_instance(input_file)
-      optimal_solution, time_ccda, total_time, gap, removed_nodes_percentage, removed_arcs_percentage = reduced_ILP_algorithm(instance)
+      result = reduced_ILP_algorithm(instance)
 
       with open(output_file, 'w') as f:
-        if not optimal_solution:
-          f.write(
-            'No solution found' +
-            '\nTime Colour Constrained Dijkstra Algorithm: ' + str(time_ccda) +
-            '\nTotal time: ' + str(total_time)
-          )
-        else:
-          f.write(
-            optimal_solution.to_string() +
-            '\nTime Colour Constrained Dijkstra Algorithm: ' + str(time_ccda) +
-            '\nTotal time: ' + str(total_time) +
-            '\nGap: ' + str(gap) +
-            '\nRemoved nodes percentage: ' + str(removed_nodes_percentage) +
-            '\nRemoved arcs percentage: ' + str(removed_arcs_percentage)
-          )
+        f.write(result.to_string())
 
       print('\n=================================================================================\n\n')
 
