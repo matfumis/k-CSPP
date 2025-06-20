@@ -3,16 +3,11 @@ import networkx as nx
 
 def graph_reduction(graph, source, destination, initial_solution):
 
-  # 1) Compute single‐source distances from `source` to every other node (weight='weight').
   distances_from_source = nx.single_source_dijkstra_path_length(graph, source, weight='weight')
-
-  # 2) Compute single‐source distances from `destination` to every other node.
-  #    Since G is undirected, this is equivalent to distances node→destination.
   distances_to_destination = nx.single_source_dijkstra_path_length(graph, destination, weight='weight')
 
   upper_bound = initial_solution.cost
 
-  # 3) Identify all nodes that must be removed.  We keep source/destination no matter what.
   nodes_to_remove = []
   for node in graph.nodes():
 
@@ -22,12 +17,10 @@ def graph_reduction(graph, source, destination, initial_solution):
     distance_from_source_to_node = distances_from_source.get(node, float('inf'))
     distance_to_destination = distances_to_destination.get(node, float('inf'))
 
-    # If either is ∞, or if distance_from_source_to_node + distance_to_destination > upper bound, we remove node
     if (distance_from_source_to_node == float('inf') or distance_to_destination == float('inf') or
-        (distance_from_source_to_node + distance_to_destination) >= upper_bound):    # TODO usa il >= !!!!!!!!!!!!!!!!!!!!!!
+        (distance_from_source_to_node + distance_to_destination) >= upper_bound):
       nodes_to_remove.append(node)
 
-  # 4) Create a copy of G, remove all flagged nodes
   reduced_graph = graph.copy()
   reduced_graph.remove_nodes_from(nodes_to_remove)
 
@@ -53,11 +46,9 @@ def graph_reduction(graph, source, destination, initial_solution):
       edge_reverse = (neighbor, node)
 
       if total_distance > upper_bound:
-        # incrementa il contatore, partendo da 0 se non esiste
         edges_counter[edge_direct] = edges_counter.get(edge_direct, 0) + 1
         edges_counter[edge_reverse] = edges_counter.get(edge_reverse, 0) + 1
 
-        # alla seconda volta, segnala l'arco da rimuovere
         if edges_counter[edge_direct] == 2:
           edges_to_remove.append((node, neighbor))
 
