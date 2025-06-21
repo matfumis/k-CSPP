@@ -104,37 +104,40 @@ from matplotlib.ticker import MaxNLocator
 
 
 def save_image(list_A, list_B, instance_type, image_name):
-  images_dir = "images"
-  os.makedirs(images_dir, exist_ok=True)
+  """
+  Saves plot comparing Set A and Set B into:
+    images/<instance_type>/<image_name>_<instance_type>.png
+  Maintains original signature: (list_A, list_B, instance_type, image_name)
+  """
+  images_base = 'images'
+  # Create directory for Grid or Random
+  dir_path = os.path.join(images_base, instance_type)
+  os.makedirs(dir_path, exist_ok=True)
 
+  # Prepare x-axis
   n = len(list_A)
-  x_labels = [f"{instance_type}{i + 1}" for i in range(n)]
   x = list(range(n))
+  labels = [f"{instance_type}{i + 1}" for i in range(n)]
 
   fig, ax = plt.subplots(figsize=(8, 5))
-  # Connect points with straight lines
   ax.plot(x, list_A, marker='o', linestyle='-', label='Set A')
   ax.plot(x, list_B, marker='o', linestyle='-', label='Set B')
 
-  # X-axis formatting
   ax.xaxis.set_major_locator(MultipleLocator(1))
   ax.set_xticks(x)
-  ax.set_xticklabels(x_labels, rotation=45, ha='right')
+  ax.set_xticklabels(labels, rotation=45, ha='right')
 
-  # Y-axis: at most 6 ticks, evenly spaced
   ax.yaxis.set_major_locator(MaxNLocator(nbins='auto', prune='both'))
-  # ax.yaxis.set_major_locator(MultipleLocator(0.5))
-
   ax.set_xlabel('Instance')
   ax.set_ylabel(image_name)
-  ax.set_title(
-    f"{image_name}  ({'Grid' if instance_type == 'G' else 'Random'})"
-  )
+  ax.set_title(f"{image_name} ({'Grid' if instance_type == 'G' else 'Random'})")
   ax.legend()
   fig.tight_layout()
 
-  filename = f"images/{image_name}_{'Grid' if instance_type == 'G' else 'Random'}.png"
+  # Save and close
+  filename = os.path.join(dir_path, f"{image_name}_{instance_type}.png")
   fig.savefig(filename)
+  plt.close(fig)
 
 
 def main():
@@ -173,11 +176,13 @@ def main():
   save_image(mean_more_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_B_Grid, 'G', 'mean_more_removed_arcs_percentage')
 
   save_image(mean_computational_times_ccda_A_Random, mean_computational_times_ccda_B_Random, 'R', 'mean_computational_times_ccda')
+  save_image(mean_computational_times_reduction_algorithm_A_Random, mean_computational_times_reduction_algorithm_B_Random,'R', 'mean_computational_times_reduction_algorithm')
+  save_image(mean_computational_times_formulation_A_Random, mean_computational_times_formulation_B_Random, 'R','mean_computational_times_formulation_reduced')
   save_image(mean_computational_times_A_Random, mean_computational_times_B_Random, 'R', 'mean_computational_times')
   save_image(mean_gaps_A_Random, mean_gaps_B_Random, 'R', 'mean_gaps')
   save_image(mean_removed_nodes_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_nodes_percentage')
   save_image(mean_removed_arcs_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_arcs_percentage')
-
+  save_image(mean_more_removed_arcs_percentages_A_Random, mean_more_removed_arcs_percentages_B_Random, 'R', 'mean_more_removed_arcs_percentage')
 
 if __name__ == '__main__':
   main()
