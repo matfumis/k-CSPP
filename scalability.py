@@ -1,7 +1,7 @@
 import os
 import time
 
-from matplotlib.ticker import MultipleLocator
+from matplotlib.ticker import MultipleLocator, MaxNLocator
 from natsort import natsorted
 import numpy as np
 from k_CSPP_instance import k_CSPP_instance
@@ -107,9 +107,6 @@ def read_results(set_type, instance_type):
           mean_computational_times_formulation,
           mean_computational_total_times, mean_gaps, mean_removed_nodes_percentages, mean_removed_arcs_percentages,
           mean_more_removed_arcs_percentages)
-
-
-from matplotlib.ticker import MaxNLocator
 
 
 def save_image(list_A, list_B, instance_type, image_name):
