@@ -4,6 +4,7 @@ import time
 from matplotlib.ticker import MultipleLocator, MaxNLocator
 from natsort import natsorted
 import numpy as np
+from formulation import solve_k_cspp_formulation
 from k_CSPP_instance import k_CSPP_instance
 from reduced_ILP import reduced_ILP_algorithm
 import matplotlib.pyplot as plt
@@ -16,7 +17,7 @@ with open(total_time_file, 'w') as tf:
     tf.write('')
 
 
-def save_results(set_type, instance_type):
+def save_results_rilp(set_type, instance_type):
   instances = 'instances/SET_' + set_type + '/' + instance_type
   results = 'results/SET_' + set_type + '/' + instance_type
 
@@ -37,7 +38,40 @@ def save_results(set_type, instance_type):
       print('\n=================================================================================\n\n')
 
 
-def read_results(set_type, instance_type):
+def save_results_ilp(set_type, instance_type):
+  instances = 'instances/SET_' + set_type + '/' + instance_type
+  results = 'results/SET_' + set_type + '/' + instance_type
+
+  for directory in natsorted(os.listdir(instances)):
+    if not os.path.isdir(os.path.join(results, directory)):
+      os.makedirs(os.path.join(results, directory))
+
+    for file in natsorted(os.listdir(os.path.join(instances, directory))):
+      input_file = os.path.join(instances, directory, file)
+      output_file = os.path.join(results, directory, file)
+
+      with open(output_file, 'r') as f:
+        lines = f.readlines()
+
+      if 'No solution found' in lines[0]:
+        continue
+
+      instance = k_CSPP_instance(input_file)
+      graph, source, destination, k = instance.get_parameters()
+      start_time = time.time()
+      solution = solve_k_cspp_formulation(graph, source, destination, k)
+      end_time = time.time()
+
+      with open(output_file, 'a') as f:
+        f.write(
+          f"\nTime complete formulation: {end_time - start_time}\n" +
+          solution.to_string()
+        )
+
+      print('\n=================================================================================\n\n')
+
+
+def read_results_rilp(set_type, instance_type):
   results = 'results/SET_' + set_type + '/' + instance_type
   mean_computational_times_ccda = []
   mean_computational_times_reduction_algorithm = []
@@ -147,30 +181,30 @@ def save_image(list_A, list_B, instance_type, image_name):
 
 
 def main():
-  save_results('A', 'Grid')
-  save_results('A', 'Random')
-  save_results('B', 'Grid')
-  save_results('B', 'Random')
+  save_results_rilp('A', 'Grid')
+  save_results_rilp('A', 'Random')
+  save_results_ilp('B', 'Grid')
+  save_results_rilp('B', 'Random')
 
   (mean_computational_times_ccda_A_Grid, mean_computational_times_reduction_algorithm_A_Grid,
    mean_computational_times_formulation_A_Grid,
    mean_computational_times_A_Grid, mean_gaps_A_Grid, mean_removed_nodes_percentages_A_Grid,
-   mean_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_A_Grid) = read_results('A', 'Grid')
+   mean_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_A_Grid) = read_results_rilp('A', 'Grid')
 
   (mean_computational_times_ccda_B_Grid, mean_computational_times_reduction_algorithm_B_Grid,
    mean_computational_times_formulation_B_Grid,
    mean_computational_times_B_Grid, mean_gaps_B_Grid, mean_removed_nodes_percentages_B_Grid,
-   mean_removed_arcs_percentages_B_Grid, mean_more_removed_arcs_percentages_B_Grid) = read_results('B', 'Grid')
+   mean_removed_arcs_percentages_B_Grid, mean_more_removed_arcs_percentages_B_Grid) = read_results_rilp('B', 'Grid')
 
   (mean_computational_times_ccda_A_Random, mean_computational_times_reduction_algorithm_A_Random,
    mean_computational_times_formulation_A_Random, mean_computational_times_A_Random, mean_gaps_A_Random,
    mean_removed_nodes_percentages_A_Random, mean_removed_arcs_percentages_A_Random,
-   mean_more_removed_arcs_percentages_A_Random) = read_results('A', 'Random')
+   mean_more_removed_arcs_percentages_A_Random) = read_results_rilp('A', 'Random')
 
   (mean_computational_times_ccda_B_Random, mean_computational_times_reduction_algorithm_B_Random,
    mean_computational_times_formulation_B_Random, mean_computational_times_B_Random, mean_gaps_B_Random,
    mean_removed_nodes_percentages_B_Random, mean_removed_arcs_percentages_B_Random,
-   mean_more_removed_arcs_percentages_B_Random,) = read_results('B', 'Random')
+   mean_more_removed_arcs_percentages_B_Random,) = read_results_rilp('B', 'Random')
 
   save_image(mean_computational_times_ccda_A_Grid, mean_computational_times_ccda_B_Grid, 'G', 'mean_computational_times_ccda')
   save_image(mean_computational_times_reduction_algorithm_A_Grid, mean_computational_times_reduction_algorithm_B_Grid, 'G', 'mean_computational_times_reduction_algorithm')
