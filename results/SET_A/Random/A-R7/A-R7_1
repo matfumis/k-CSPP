@@ -7,8 +7,11 @@ Path
 Colours
   - colours: {108456, 116712, 22515, 132768}
   - number of used colours: 4
-Time Colour Constrained Dijkstra Algorithm: 0.88
-Total time: 0.88
+Time Colour Constrained Dijkstra Algorithm: 0.85
+Time Reduction Algorithm: 0
+Time Formulation: 0
+Total time: 0.85
 Gap: 0
 Removed nodes percentage: -1
 Removed arcs percentage: -1
+More Removed arcs percentage: -1

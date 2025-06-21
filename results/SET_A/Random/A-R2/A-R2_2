@@ -8,7 +8,10 @@ Colours
   - colours: {73218, 23795, 127749, 70453, 59480, 133884}
   - number of used colours: 6
 Time Colour Constrained Dijkstra Algorithm: 0.72
+Time Reduction Algorithm: 0
+Time Formulation: 0
 Total time: 0.72
 Gap: 0
 Removed nodes percentage: -1
 Removed arcs percentage: -1
+More Removed arcs percentage: -1

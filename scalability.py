@@ -7,7 +7,6 @@ from reduced_ILP import reduced_ILP_algorithm
 import matplotlib.pyplot as plt
 
 
-
 def save_results(set_type, instance_type):
   instances = 'instances/SET_' + set_type + '/' + instance_type
   results = 'results/SET_' + set_type + '/' + instance_type
@@ -56,7 +55,6 @@ def read_results(set_type, instance_type):
       with open(file_to_read, 'r') as f:
         lines = f.readlines()
 
-
       for line in lines:
 
         if 'Time Colour Constrained Dijkstra Algorithm' in line:
@@ -87,7 +85,6 @@ def read_results(set_type, instance_type):
           if more_removed_arcs_percentage != -1:
             more_removed_arcs_percentages.append(more_removed_arcs_percentage)
 
-
     mean_computational_times_ccda.append(np.mean(computational_times_ccda))
     mean_computational_times_reduction_algorithm.append(np.mean(computational_times_reduction_algorithm))
     mean_computational_times_formulation.append(np.mean(computational_times))
@@ -97,65 +94,74 @@ def read_results(set_type, instance_type):
     mean_removed_arcs_percentages.append(np.mean(removed_arcs_percentages))
     mean_more_removed_arcs_percentages.append(np.mean(more_removed_arcs_percentages))
 
-  return (mean_computational_times_ccda, mean_computational_times_reduction_algorithm, mean_computational_times_formulation,
-          mean_computational_total_times, mean_gaps, mean_removed_nodes_percentages, mean_removed_arcs_percentages, mean_more_removed_arcs_percentages)
-
+  return (mean_computational_times_ccda, mean_computational_times_reduction_algorithm,
+          mean_computational_times_formulation,
+          mean_computational_total_times, mean_gaps, mean_removed_nodes_percentages, mean_removed_arcs_percentages,
+          mean_more_removed_arcs_percentages)
 
 
 from matplotlib.ticker import MaxNLocator
 
+
 def save_image(list_A, list_B, instance_type, image_name):
+  images_dir = "images"
+  os.makedirs(images_dir, exist_ok=True)
 
-    images_dir = "images"
-    os.makedirs(images_dir, exist_ok=True)
+  n = len(list_A)
+  x_labels = [f"{instance_type}{i + 1}" for i in range(n)]
+  x = list(range(n))
 
-    n = len(list_A)
-    x_labels = [f"{instance_type}{i + 1}" for i in range(n)]
-    x = list(range(n))
+  fig, ax = plt.subplots(figsize=(8, 5))
+  # Connect points with straight lines
+  ax.plot(x, list_A, marker='o', linestyle='-', label='Set A')
+  ax.plot(x, list_B, marker='o', linestyle='-', label='Set B')
 
-    fig, ax = plt.subplots(figsize=(8, 5))
-    # Connect points with straight lines
-    ax.plot(x, list_A, marker='o', linestyle='-', label='Set A')
-    ax.plot(x, list_B, marker='o', linestyle='-', label='Set B')
+  # X-axis formatting
+  ax.xaxis.set_major_locator(MultipleLocator(1))
+  ax.set_xticks(x)
+  ax.set_xticklabels(x_labels, rotation=45, ha='right')
 
-    # X-axis formatting
-    ax.xaxis.set_major_locator(MultipleLocator(1))
-    ax.set_xticks(x)
-    ax.set_xticklabels(x_labels, rotation=45, ha='right')
+  # Y-axis: at most 6 ticks, evenly spaced
+  ax.yaxis.set_major_locator(MaxNLocator(nbins='auto', prune='both'))
+  # ax.yaxis.set_major_locator(MultipleLocator(0.5))
 
-    # Y-axis: at most 6 ticks, evenly spaced
-    ax.yaxis.set_major_locator(MaxNLocator(nbins='auto', prune='both'))
-    # ax.yaxis.set_major_locator(MultipleLocator(0.5))
+  ax.set_xlabel('Instance')
+  ax.set_ylabel(image_name)
+  ax.set_title(
+    f"{image_name}  ({'Grid' if instance_type == 'G' else 'Random'})"
+  )
+  ax.legend()
+  fig.tight_layout()
 
-    ax.set_xlabel('Instance')
-    ax.set_ylabel(image_name)
-    ax.set_title(
-      f"{image_name}  ({'Grid' if instance_type == 'G' else 'Random'})"
-    )
-    ax.legend()
-    fig.tight_layout()
-
-    filename = f"images/{image_name}_{'Grid' if instance_type == 'G' else 'Random'}.png"
-    fig.savefig(filename)
-
-
+  filename = f"images/{image_name}_{'Grid' if instance_type == 'G' else 'Random'}.png"
+  fig.savefig(filename)
 
 
 def main():
-
-  # save_results('B', 'Grid') # DONE
-  # save_results('B', 'Random') # TO FINISH
   # save_results('A', 'Grid') # DONE
-  # save_results('A', 'Random') # DONE
+  # save_results('A', 'Random') DONE
+  # save_results('B', 'Grid') # DONE
+  # save_results('B', 'Random') DONE
 
-  (mean_computational_times_ccda_A_Grid, mean_computational_times_reduction_algorithm_A_Grid, mean_computational_times_formulation_A_Grid,
-   mean_computational_times_A_Grid, mean_gaps_A_Grid, mean_removed_nodes_percentages_A_Grid, mean_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_A_Grid) = read_results('A', 'Grid')
+  (mean_computational_times_ccda_A_Grid, mean_computational_times_reduction_algorithm_A_Grid,
+   mean_computational_times_formulation_A_Grid,
+   mean_computational_times_A_Grid, mean_gaps_A_Grid, mean_removed_nodes_percentages_A_Grid,
+   mean_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_A_Grid) = read_results('A', 'Grid')
 
-  (mean_computational_times_ccda_B_Grid, mean_computational_times_reduction_algorithm_B_Grid, mean_computational_times_formulation_B_Grid,
-   mean_computational_times_B_Grid, mean_gaps_B_Grid, mean_removed_nodes_percentages_B_Grid, mean_removed_arcs_percentages_B_Grid, mean_more_removed_arcs_percentages_B_Grid) = read_results('B', 'Grid')
-  # mean_computational_times_ccda_A_Random, mean_computational_times_A_Random, mean_gaps_A_Random, mean_removed_nodes_percentages_A_Random, mean_removed_arcs_percentages_A_Random = read_results('A', 'Random')
-  # mean_computational_times_ccda_B_Random, mean_computational_times_B_Random, mean_gaps_B_Random, mean_removed_nodes_percentages_B_Random, mean_removed_arcs_percentages_B_Random = read_results('B','Random')
+  (mean_computational_times_ccda_B_Grid, mean_computational_times_reduction_algorithm_B_Grid,
+   mean_computational_times_formulation_B_Grid,
+   mean_computational_times_B_Grid, mean_gaps_B_Grid, mean_removed_nodes_percentages_B_Grid,
+   mean_removed_arcs_percentages_B_Grid, mean_more_removed_arcs_percentages_B_Grid) = read_results('B', 'Grid')
 
+  (mean_computational_times_ccda_A_Random, mean_computational_times_reduction_algorithm_A_Random,
+   mean_computational_times_formulation_A_Random, mean_computational_times_A_Random, mean_gaps_A_Random,
+   mean_removed_nodes_percentages_A_Random, mean_removed_arcs_percentages_A_Random,
+   mean_more_removed_arcs_percentages_A_Random) = read_results('A', 'Random')
+
+  (mean_computational_times_ccda_B_Random, mean_computational_times_reduction_algorithm_B_Random,
+   mean_computational_times_formulation_B_Random, mean_computational_times_B_Random, mean_gaps_B_Random,
+   mean_removed_nodes_percentages_B_Random, mean_removed_arcs_percentages_B_Random,
+   mean_more_removed_arcs_percentages_B_Random,) = read_results('B', 'Random')
 
   save_image(mean_computational_times_ccda_A_Grid, mean_computational_times_ccda_B_Grid, 'G', 'mean_computational_times_ccda')
   save_image(mean_computational_times_reduction_algorithm_A_Grid, mean_computational_times_reduction_algorithm_B_Grid, 'G', 'mean_computational_times_reduction_algorithm')
@@ -166,15 +172,12 @@ def main():
   save_image(mean_removed_arcs_percentages_A_Grid, mean_removed_arcs_percentages_B_Grid, 'G', 'mean_removed_arcs_percentage')
   save_image(mean_more_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_B_Grid, 'G', 'mean_more_removed_arcs_percentage')
 
-
-  # save_image(mean_computational_times_ccda_A_Random, mean_computational_times_ccda_B_Random, 'R', 'mean_computational_times_ccda')
-  # save_image(mean_computational_times_A_Random, mean_computational_times_B_Random, 'R', 'mean_computational_times')
-  # save_image(mean_gaps_A_Random, mean_gaps_B_Random, 'R', 'mean_gaps')
-  # save_image(mean_removed_nodes_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_nodes_percentage')
-  # save_image(mean_removed_arcs_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_arcs_percentage')
-
-
+  save_image(mean_computational_times_ccda_A_Random, mean_computational_times_ccda_B_Random, 'R', 'mean_computational_times_ccda')
+  save_image(mean_computational_times_A_Random, mean_computational_times_B_Random, 'R', 'mean_computational_times')
+  save_image(mean_gaps_A_Random, mean_gaps_B_Random, 'R', 'mean_gaps')
+  save_image(mean_removed_nodes_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_nodes_percentage')
+  save_image(mean_removed_arcs_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_arcs_percentage')
 
 
 if __name__ == '__main__':
-    main()
+  main()
