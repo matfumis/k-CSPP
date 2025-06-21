@@ -1,10 +1,19 @@
 import os
+import time
+
 from matplotlib.ticker import MultipleLocator
 from natsort import natsorted
 import numpy as np
 from k_CSPP_instance import k_CSPP_instance
 from reduced_ILP import reduced_ILP_algorithm
 import matplotlib.pyplot as plt
+
+total_time_file = 'results/total_execution_time.txt'
+# Ensure the results directory exists
+os.makedirs(os.path.dirname(total_time_file), exist_ok=True)
+# Clear previous summary
+with open(total_time_file, 'w') as tf:
+    tf.write('')
 
 
 def save_results(set_type, instance_type):
@@ -141,10 +150,10 @@ def save_image(list_A, list_B, instance_type, image_name):
 
 
 def main():
-  # save_results('A', 'Grid') # DONE
-  # save_results('A', 'Random') DONE
-  # save_results('B', 'Grid') # DONE
-  # save_results('B', 'Random') DONE
+  save_results('A', 'Grid')
+  save_results('A', 'Random')
+  save_results('B', 'Grid')
+  save_results('B', 'Random')
 
   (mean_computational_times_ccda_A_Grid, mean_computational_times_reduction_algorithm_A_Grid,
    mean_computational_times_formulation_A_Grid,
@@ -185,4 +194,10 @@ def main():
   save_image(mean_more_removed_arcs_percentages_A_Random, mean_more_removed_arcs_percentages_B_Random, 'R', 'mean_more_removed_arcs_percentage')
 
 if __name__ == '__main__':
+  start = time.time()
   main()
+  total_elapsed = time.time() - start
+  # Write total execution time
+  with open(total_time_file, 'w') as tf:
+    tf.write(f"Total script execution time: {total_elapsed:.4f} seconds\n")
+  print(f"Total script execution time: {total_elapsed:.4f} seconds")
