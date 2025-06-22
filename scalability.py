@@ -1,18 +1,14 @@
 import os
 import time
+from multiprocessing import Process, Queue
 
-from matplotlib.ticker import MultipleLocator, MaxNLocator
 from natsort import natsorted
-import numpy as np
 from formulation import solve_k_cspp_formulation
 from k_CSPP_instance import k_CSPP_instance
 from reduced_ILP import reduced_ILP_algorithm
-import matplotlib.pyplot as plt
 
 total_time_file = 'results/total_execution_time.txt'
-# Ensure the results directory exists
 os.makedirs(os.path.dirname(total_time_file), exist_ok=True)
-# Clear previous summary
 with open(total_time_file, 'w') as tf:
     tf.write('')
 
@@ -37,192 +33,77 @@ def save_results_rilp(set_type, instance_type):
 
       print('\n=================================================================================\n\n')
 
+def _worker(graph, source, dest, k, timelimit, q):
+  sol = solve_k_cspp_formulation(graph, source, dest, k)
+  q.put(sol)
+
 
 def save_results_ilp(set_type, instance_type):
-  instances = 'instances/SET_' + set_type + '/' + instance_type
-  results = 'results/SET_' + set_type + '/' + instance_type
+  instances = f'instances/SET_{set_type}/{instance_type}'
+  results = f'results/SET_{set_type}/{instance_type}'
 
   for directory in natsorted(os.listdir(instances)):
-    if not os.path.isdir(os.path.join(results, directory)):
-      os.makedirs(os.path.join(results, directory))
+    os.makedirs(os.path.join(results, directory), exist_ok=True)
 
     for file in natsorted(os.listdir(os.path.join(instances, directory))):
       input_file = os.path.join(instances, directory, file)
       output_file = os.path.join(results, directory, file)
 
+      print('\n' + '=' * 81)
+      print(f'Computing: {input_file}\n')
+
       with open(output_file, 'r') as f:
         lines = f.readlines()
-
-      if 'No solution found' in lines[0]:
+      if lines[0].startswith('No solution found'):
+        continue
+      if any(l.startswith('Time complete formulation:') for l in lines):
         continue
 
-      instance = k_CSPP_instance(input_file)
-      graph, source, destination, k = instance.get_parameters()
-      start_time = time.time()
-      solution = solve_k_cspp_formulation(graph, source, destination, k)
-      end_time = time.time()
+      # prepara l'istanza
+      graph, source, dest, k = k_CSPP_instance(input_file).get_parameters()
+      start = time.time()
 
+      time_limit = 600
+      # queue per ricevere la soluzione
+      q = Queue()
+      p = Process(target=_worker, args=(graph, source, dest, k, time_limit, q))
+      p.start()
+      p.join(timeout=time_limit)  # aspetta al massimo 600s
+
+      # se ancora vivo dopo 600s, lo uccidiamo
+      if p.is_alive():
+        p.terminate()
+        p.join()
+        solution = None
+        elapsed = round(time.time() - start, 2)
+      else:
+        # processo terminato in tempo
+        try:
+          solution = q.get_nowait()
+        except:
+          solution = None
+        elapsed = round(time.time() - start, 2)
+
+      # append sul file
       with open(output_file, 'a') as f:
-        f.write(
-          f"\nTime complete formulation: {end_time - start_time}\n" +
-          solution.to_string()
-        )
-
-      print('\n=================================================================================\n\n')
-
-
-def read_results_rilp(set_type, instance_type):
-  results = 'results/SET_' + set_type + '/' + instance_type
-  mean_computational_times_ccda = []
-  mean_computational_times_reduction_algorithm = []
-  mean_computational_times_formulation = []
-  mean_computational_total_times = []
-  mean_gaps = []
-  mean_removed_nodes_percentages = []
-  mean_removed_arcs_percentages = []
-  mean_more_removed_arcs_percentages = []
-
-  for directory in natsorted(os.listdir(results)):
-    computational_times_ccda = []
-    computational_times_reduction_algorithm = []
-    computational_times_formulation = []
-    computational_times = []
-    gaps = []
-    removed_nodes_percentages = []
-    removed_arcs_percentages = []
-    more_removed_arcs_percentages = []
-
-    for file in natsorted(os.listdir(os.path.join(results, directory))):
-      file_to_read = os.path.join(results, directory, file)
-
-      with open(file_to_read, 'r') as f:
-        lines = f.readlines()
-
-      for line in lines:
-
-        if 'Time Colour Constrained Dijkstra Algorithm' in line:
-          time_ccda = float(line.split(':')[1].strip())
-          computational_times_ccda.append(time_ccda)
-        elif 'Time Reduction Algorithm' in line:
-          time_reduction_algorithm = float(line.split(':')[1].strip())
-          computational_times_reduction_algorithm.append(time_reduction_algorithm)
-        elif 'Time Formulation' in line:
-          time_formulation = float(line.split(':')[1].strip())
-          computational_times_formulation.append(time_formulation)
-        elif 'Total time' in line:
-          total_time = float(line.split(':')[1].strip())
-          computational_times.append(total_time)
-        elif 'Gap' in line:
-          gap = float(line.split(':')[1].strip())
-          gaps.append(gap)
-        elif 'Removed nodes percentage' in line:
-          removed_nodes_percentage = float(line.split(':')[1].strip())
-          if removed_nodes_percentage != -1:
-            removed_nodes_percentages.append(removed_nodes_percentage)
-        elif 'Removed arcs percentage' in line and 'More' not in line:
-          removed_arcs_percentage = float(line.split(':')[1].strip())
-          if removed_arcs_percentage != -1:
-            removed_arcs_percentages.append(removed_arcs_percentage)
-        elif 'More Removed arcs percentage' in line:
-          more_removed_arcs_percentage = float(line.split(':')[1].strip())
-          if more_removed_arcs_percentage != -1:
-            more_removed_arcs_percentages.append(more_removed_arcs_percentage)
-
-    mean_computational_times_ccda.append(np.mean(computational_times_ccda))
-    mean_computational_times_reduction_algorithm.append(np.mean(computational_times_reduction_algorithm))
-    mean_computational_times_formulation.append(np.mean(computational_times))
-    mean_computational_total_times.append(np.mean(computational_times))
-    mean_gaps.append(np.mean(gaps))
-    mean_removed_nodes_percentages.append(np.mean(removed_nodes_percentages))
-    mean_removed_arcs_percentages.append(np.mean(removed_arcs_percentages))
-    mean_more_removed_arcs_percentages.append(np.mean(more_removed_arcs_percentages))
-
-  return (mean_computational_times_ccda, mean_computational_times_reduction_algorithm,
-          mean_computational_times_formulation,
-          mean_computational_total_times, mean_gaps, mean_removed_nodes_percentages, mean_removed_arcs_percentages,
-          mean_more_removed_arcs_percentages)
-
-
-def save_image(list_A, list_B, instance_type, image_name):
-  """
-  Saves plot comparing Set A and Set B into:
-    images/<instance_type>/<image_name>_<instance_type>.png
-  Maintains original signature: (list_A, list_B, instance_type, image_name)
-  """
-  images_base = 'images'
-  # Create directory for Grid or Random
-  dir_path = os.path.join(images_base, instance_type)
-  os.makedirs(dir_path, exist_ok=True)
-
-  # Prepare x-axis
-  n = len(list_A)
-  x = list(range(n))
-  labels = [f"{instance_type}{i + 1}" for i in range(n)]
-
-  fig, ax = plt.subplots(figsize=(8, 5))
-  ax.plot(x, list_A, marker='o', linestyle='-', label='Set A')
-  ax.plot(x, list_B, marker='o', linestyle='-', label='Set B')
-
-  ax.xaxis.set_major_locator(MultipleLocator(1))
-  ax.set_xticks(x)
-  ax.set_xticklabels(labels, rotation=45, ha='right')
-
-  ax.yaxis.set_major_locator(MaxNLocator(nbins='auto', prune='both'))
-  ax.set_xlabel('Instance')
-  ax.set_ylabel(image_name)
-  ax.set_title(f"{image_name} ({'Grid' if instance_type == 'G' else 'Random'})")
-  ax.legend()
-  fig.tight_layout()
-
-  # Save and close
-  filename = os.path.join(dir_path, f"{image_name}_{instance_type}.png")
-  fig.savefig(filename)
-  plt.close(fig)
+        f.write("=" * 81 + "\n")
+        if solution is None:
+          f.write("Time complete formulation: time limit exceeded (> 10 min)\n")
+        else:
+          f.write(f"Time complete formulation: {elapsed}\n")
+          f.write(solution.to_string())
 
 
 def main():
-  save_results_rilp('A', 'Grid')
-  save_results_rilp('A', 'Random')
+  #save_results_rilp('A', 'Grid')
+  #save_results_rilp('A', 'Random')
+  #save_results_rilp('B', 'Grid')
+  #save_results_rilp('B', 'Random')
+
+  save_results_ilp('A', 'Grid')
+  save_results_ilp('A', 'Random')
   save_results_ilp('B', 'Grid')
-  save_results_rilp('B', 'Random')
-
-  (mean_computational_times_ccda_A_Grid, mean_computational_times_reduction_algorithm_A_Grid,
-   mean_computational_times_formulation_A_Grid,
-   mean_computational_times_A_Grid, mean_gaps_A_Grid, mean_removed_nodes_percentages_A_Grid,
-   mean_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_A_Grid) = read_results_rilp('A', 'Grid')
-
-  (mean_computational_times_ccda_B_Grid, mean_computational_times_reduction_algorithm_B_Grid,
-   mean_computational_times_formulation_B_Grid,
-   mean_computational_times_B_Grid, mean_gaps_B_Grid, mean_removed_nodes_percentages_B_Grid,
-   mean_removed_arcs_percentages_B_Grid, mean_more_removed_arcs_percentages_B_Grid) = read_results_rilp('B', 'Grid')
-
-  (mean_computational_times_ccda_A_Random, mean_computational_times_reduction_algorithm_A_Random,
-   mean_computational_times_formulation_A_Random, mean_computational_times_A_Random, mean_gaps_A_Random,
-   mean_removed_nodes_percentages_A_Random, mean_removed_arcs_percentages_A_Random,
-   mean_more_removed_arcs_percentages_A_Random) = read_results_rilp('A', 'Random')
-
-  (mean_computational_times_ccda_B_Random, mean_computational_times_reduction_algorithm_B_Random,
-   mean_computational_times_formulation_B_Random, mean_computational_times_B_Random, mean_gaps_B_Random,
-   mean_removed_nodes_percentages_B_Random, mean_removed_arcs_percentages_B_Random,
-   mean_more_removed_arcs_percentages_B_Random,) = read_results_rilp('B', 'Random')
-
-  save_image(mean_computational_times_ccda_A_Grid, mean_computational_times_ccda_B_Grid, 'G', 'mean_computational_times_ccda')
-  save_image(mean_computational_times_reduction_algorithm_A_Grid, mean_computational_times_reduction_algorithm_B_Grid, 'G', 'mean_computational_times_reduction_algorithm')
-  save_image(mean_computational_times_formulation_A_Grid, mean_computational_times_formulation_B_Grid, 'G', 'mean_computational_times_formulation_reduced')
-  save_image(mean_computational_times_A_Grid, mean_computational_times_B_Grid, 'G', 'mean_computational_total_times_')
-  save_image(mean_gaps_A_Grid, mean_gaps_B_Grid, 'G', 'mean_gaps')
-  save_image(mean_removed_nodes_percentages_A_Grid, mean_removed_nodes_percentages_B_Grid, 'G', 'mean_removed_nodes_percentage')
-  save_image(mean_removed_arcs_percentages_A_Grid, mean_removed_arcs_percentages_B_Grid, 'G', 'mean_removed_arcs_percentage')
-  save_image(mean_more_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_B_Grid, 'G', 'mean_more_removed_arcs_percentage')
-
-  save_image(mean_computational_times_ccda_A_Random, mean_computational_times_ccda_B_Random, 'R', 'mean_computational_times_ccda')
-  save_image(mean_computational_times_reduction_algorithm_A_Random, mean_computational_times_reduction_algorithm_B_Random,'R', 'mean_computational_times_reduction_algorithm')
-  save_image(mean_computational_times_formulation_A_Random, mean_computational_times_formulation_B_Random, 'R','mean_computational_times_formulation_reduced')
-  save_image(mean_computational_times_A_Random, mean_computational_times_B_Random, 'R', 'mean_computational_times')
-  save_image(mean_gaps_A_Random, mean_gaps_B_Random, 'R', 'mean_gaps')
-  save_image(mean_removed_nodes_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_nodes_percentage')
-  save_image(mean_removed_arcs_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_arcs_percentage')
-  save_image(mean_more_removed_arcs_percentages_A_Random, mean_more_removed_arcs_percentages_B_Random, 'R', 'mean_more_removed_arcs_percentage')
+  save_results_ilp('B', 'Random')
 
 if __name__ == '__main__':
   start = time.time()
