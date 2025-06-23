@@ -86,7 +86,7 @@ def save_results_ilp(set_type, instance_type):
 
       # append sul file
       with open(output_file, 'a') as f:
-        f.write("=" * 81 + "\n")
+        f.write("\n"+"=" * 81 + "\n")
         if solution is None:
           f.write("Time complete formulation: time limit exceeded (> 10 min)\n")
         else:

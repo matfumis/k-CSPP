@@ -2,7 +2,7 @@ from colour_constrained_dijkstra_algorithm import solve_colour_constrained_dijks
 from formulation import solve_k_cspp_formulation
 from graph_reduction_algorithm import graph_reduction
 import time
-from result import result
+from utils.result import Result
 
 def reduced_ILP_algorithm(instance):
   start_time = time.time()
@@ -18,14 +18,14 @@ def reduced_ILP_algorithm(instance):
   if not initial_solution:
     print(f'No solution found with at most {k} colours\n')
     print(f'Total time: {time_ccda}\n')
-    return result(None, time_ccda, None,None, None, None, None, None, None)
+    return Result(None, time_ccda, None, None, None, None, None, None, None)
 
   print(f'Initial solution found in {time_ccda} seconds.\n{initial_solution.to_string()}\n')
 
   if is_best_tour:
     print('Initial solution is the optimal solution.\n')
     print(f'Total time: {time_ccda} seconds\n')
-    return result(initial_solution, time_ccda, 0,0, time_ccda, 0, -1 , -1, -1) # -1 means graph reduction not performed
+    return Result(initial_solution, time_ccda, 0, 0, time_ccda, 0, -1, -1, -1) # -1 means graph reduction not performed
 
 
   print('Performing Graph Reduction algorithm...')
@@ -53,7 +53,7 @@ def reduced_ILP_algorithm(instance):
 
   if not optimal_solution:
     print('No optimal solution found\n')
-    return result(None, total_time, None,None, None, None, None, None, None)
+    return Result(None, total_time, None, None, None, None, None, None, None)
 
   print(f'Optimal solution found: \n{optimal_solution.to_string()}\n')
 
@@ -62,7 +62,7 @@ def reduced_ILP_algorithm(instance):
 
   print(f'Total time: {total_time} seconds\n')
 
-  return result(optimal_solution, time_ccda, time_reduction_algorithm, time_solver_formulation, total_time, gap, removed_nodes_percentage, removed_arcs_percentage, more_removed_arcs_percentage)
+  return Result(optimal_solution, time_ccda, time_reduction_algorithm, time_solver_formulation, total_time, gap, removed_nodes_percentage, removed_arcs_percentage, more_removed_arcs_percentage)
 
 
 def compute_gap(initial_solution, optimal_solution):

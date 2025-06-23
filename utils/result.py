@@ -1,4 +1,4 @@
-class result:
+class Result:
   def __init__(self, initial_solution, time_ccda, time_reduction_algorithm, time_formulation, total_time, gap,
                removed_nodes_percentage, removed_arcs_percentage, more_removed_arcs_percentage):
         self.initial_solution = initial_solution
