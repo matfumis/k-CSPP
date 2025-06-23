@@ -3,8 +3,8 @@ import os
 def truncate_after_marker(root_dir, marker="Time complete formulation"):
     
     for dirpath, _, filenames in os.walk(root_dir):
-        for fname in filenames:
-            file_path = os.path.join(dirpath, fname)
+        for file in filenames:
+            file_path = os.path.join(dirpath, file)
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     lines = f.readlines()
