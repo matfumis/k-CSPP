@@ -1,0 +1,19 @@
+Path
+  - source node: 20603
+  - destination node: 62593
+  - path: [20603, 67937, 5877, 73482, 10520, 86989, 62593]
+  - number of used nodes: 7
+  - cost: 91
+Colours
+  - colours: {14321, 12215, 4739, 23287, 7291, 2909}
+  - number of used colours: 6
+Time Colour Constrained Dijkstra Algorithm: 2.61
+Time Reduction Algorithm: 0
+Time Formulation: 0
+Total time: 2.61
+Gap: 0
+Removed nodes percentage: -1
+Removed arcs percentage: -1
+More Removed arcs percentage: -1
+=================================================================================
+Time complete formulation: time limit exceeded (> 10 min)
