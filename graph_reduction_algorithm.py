@@ -45,7 +45,7 @@ def graph_reduction(graph, source, destination, initial_solution):
       edge_direct = (node, neighbor)
       edge_reverse = (neighbor, node)
 
-      if total_distance > upper_bound:
+      if total_distance >= upper_bound:
         edges_counter[edge_direct] = edges_counter.get(edge_direct, 0) + 1
         edges_counter[edge_reverse] = edges_counter.get(edge_reverse, 0) + 1
 
