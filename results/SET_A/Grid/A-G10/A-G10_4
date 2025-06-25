@@ -11,7 +11,7 @@ Time Colour Constrained Dijkstra Algorithm: 5.94
 Time Reduction Algorithm: 2.31
 Time Formulation: 0.13
 Total time: 8.42
-Gap: -0.0032469640885771805
+Gap: 0.0032469640885771805
 Removed nodes percentage: 99.5848
 Removed arcs percentage: 99.78917835671342
 More Removed arcs percentage: 0.6653992395437291

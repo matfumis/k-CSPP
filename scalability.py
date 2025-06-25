@@ -83,15 +83,15 @@ def save_results_ilp(set_type, instance_type):
 
 
 def main():
-  #save_results_rilp('A', 'Grid')
-  #save_results_rilp('A', 'Random')
-  #save_results_rilp('B', 'Grid')
-  #save_results_rilp('B', 'Random')
+  save_results_rilp('A', 'Grid')
+  save_results_rilp('A', 'Random')
+  save_results_rilp('B', 'Grid')
+  save_results_rilp('B', 'Random')
 
   save_results_ilp('A', 'Grid')
-  # save_results_ilp('A', 'Random')
+  save_results_ilp('A', 'Random')
   save_results_ilp('B', 'Grid')
-  # save_results_ilp('B', 'Random')
+  save_results_ilp('B', 'Random')
 
 if __name__ == '__main__':
   main()
