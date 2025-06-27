@@ -4,225 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="36c130cd-eb2e-4b89-b57e-a6b09293ee15" name="Changes" comment="Improved GRA logic, scalability refactor">
+    <list default="true" id="36c130cd-eb2e-4b89-b57e-a6b09293ee15" name="Changes" comment="New mean results">
+      <change afterPath="$PROJECT_DIR$/utils/append_time_limit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph_reduction_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_reduction_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G1/A-G1_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G10/A-G10_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G11/A-G11_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G12/A-G12_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G2/A-G2_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G3/A-G3_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G4/A-G4_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G5/A-G5_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G6/A-G6_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G7/A-G7_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G8/A-G8_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/Grid/A-G9/A-G9_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G1/B-G1_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G10/B-G10_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G11/B-G11_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G12/B-G12_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G2/B-G2_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G3/B-G3_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G4/B-G4_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G5/B-G5_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G6/B-G6_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G7/B-G7_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G8/B-G8_9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_0" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_1" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_2" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_3" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_4" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_5" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_6" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_7" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_8" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_9" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/Grid/B-G9/B-G9_9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/SET_A/mean_results_A_Grid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/mean_results_A_Grid.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/SET_A/mean_results_A_Random.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_A/mean_results_A_Random.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/SET_B/mean_results_B_Grid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/mean_results_B_Grid.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/SET_B/mean_results_B_Random.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/SET_B/mean_results_B_Random.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/save_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/save_results.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,6 +30,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/colour_constrained_dijkstra_algorithm.py" root0="SKIP_INSPECTION" />
@@ -255,33 +47,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.algorithm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.formulation.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scalability.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/teo/Projects/PythonProjects/k-CSPP&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.algorithm.executor": "Run",
+    "Python.formulation.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.save_results.executor": "Run",
+    "Python.scalability.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/Users/teo/Projects/PythonProjects/k-CSPP",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="C:\Users\utente\PycharmProjects\k-CSPP" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.scalability">
+  <component name="RunManager" selected="Python.save_results">
     <configuration name="formulation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="k-CSPP" />
       <option name="ENV_FILES" value="" />
@@ -328,6 +125,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="save_results" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="k-CSPP" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/save_results.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="scalability" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="k-CSPP" />
       <option name="ENV_FILES" value="" />
@@ -353,6 +173,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.save_results" />
         <item itemvalue="Python.scalability" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.formulation" />
@@ -406,6 +227,7 @@
       <workItem from="1750235528945" duration="218000" />
       <workItem from="1750236857969" duration="20299000" />
       <workItem from="1750338678128" duration="7265000" />
+      <workItem from="1750945312099" duration="6419000" />
     </task>
     <task id="LOCAL-00001" summary="A_Random instance results">
       <option name="closed" value="true" />
@@ -431,7 +253,23 @@
       <option name="project" value="LOCAL" />
       <updated>1750277931671</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="New mean results">
+      <option name="closed" value="true" />
+      <created>1750929336715</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1750929336715</updated>
+    </task>
+    <task id="LOCAL-00005" summary="New mean results">
+      <option name="closed" value="true" />
+      <created>1750929693893</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1750929693893</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +280,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -452,13 +302,19 @@
     <MESSAGE value="A_Random instance results" />
     <MESSAGE value="A_GRID, B_GRID, B_RANDOM (partial) results added" />
     <MESSAGE value="Improved GRA logic, scalability refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved GRA logic, scalability refactor" />
+    <MESSAGE value="New mean results" />
+    <option name="LAST_COMMIT_MESSAGE" value="New mean results" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/k_CSPP$scalability.coverage" NAME="scalability Coverage Results" MODIFIED="1750346467671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/k_CSPP$append_time_limit.coverage" NAME="append_time_limit Coverage Results" MODIFIED="1750775577072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/k_CSPP$scalability.coverage" NAME="scalability Coverage Results" MODIFIED="1750968756210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/k_CSPP$formulation.coverage" NAME="formulation Coverage Results" MODIFIED="1748700553608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/k_CSPP$algorithm.coverage" NAME="algorithm Coverage Results" MODIFIED="1748623726597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/k_CSPP$scalability_parallel.coverage" NAME="scalability_parallel Coverage Results" MODIFIED="1750516072328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/k_CSPP$test.coverage" NAME="test Coverage Results" MODIFIED="1749887963203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/k_CSPP$save_images.coverage" NAME="save_images Coverage Results" MODIFIED="1750599872056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/k_CSPP$main.coverage" NAME="main Coverage Results" MODIFIED="1748904247952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/k_CSPP$clear_ilp_results.coverage" NAME="clear_ilp_results Coverage Results" MODIFIED="1750586536773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/k_CSPP$save_results.coverage" NAME="save_results Coverage Results" MODIFIED="1750968888508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -155,7 +155,7 @@ def save_image(list_A, list_B, instance_type, image_name):
   plt.close(fig)
 
 
-def save_mean_results(set_type, instance_type, times_gra, removed_arcs, more_removed_arcs, tot_opt_ccda, times_ccda,
+def save_mean_results(set_type, instance_type, times_gra, removed_nodes, removed_arcs, more_removed_arcs, tot_opt_ccda, times_ccda,
                       gaps, tot_opt_formulations, costs, formulation_times_ilp, formulation_times_rilp, filename):
   os.makedirs('results/SET_' + set_type[0], exist_ok=True)
 
@@ -203,6 +203,10 @@ def save_mean_results(set_type, instance_type, times_gra, removed_arcs, more_rem
     for i in range(len(times_gra)):
       f.write(f"{set_type}-{instance_type[0]}{i + 1}: " + str(times_gra[i]) + "\n")
 
+    f.write('Removed nodes:\n\n')
+    for i in range(len(removed_nodes)):
+      f.write(f"{set_type}-{instance_type[0]}{i + 1}: " + str(removed_nodes[i]) + "\n")
+
     f.write("\nRemoved arcs:\n\n")
     for i in range(len(removed_arcs)):
       f.write(f"{set_type}-{instance_type[0]}{i + 1}: " + str(removed_arcs[i]) + "\n")
@@ -242,43 +246,43 @@ def main():
   mean_computational_times_complete_formulation_B_Grid = read_results_ilp('B', 'Grid')
   mean_computational_times_complete_formulation_B_Random = read_results_ilp('B', 'Random')
 
-  # save_image(mean_computational_times_ccda_A_Grid, mean_computational_times_ccda_B_Grid, 'G', 'mean_computational_times_ccda')
-  # save_image(mean_computational_times_reduction_algorithm_A_Grid, mean_computational_times_reduction_algorithm_B_Grid, 'G', 'mean_computational_times_reduction_algorithm')
-  # save_image(mean_computational_times_formulation_A_Grid, mean_computational_times_formulation_B_Grid, 'G', 'mean_computational_times_formulation_reduced')
-  # save_image(mean_computational_times_A_Grid, mean_computational_times_B_Grid, 'G', 'mean_computational_total_times_')
-  # save_image(mean_gaps_A_Grid, mean_gaps_B_Grid, 'G', 'mean_gaps')
-  # save_image(mean_removed_nodes_percentages_A_Grid, mean_removed_nodes_percentages_B_Grid, 'G', 'mean_removed_nodes_percentage')
-  # save_image(mean_removed_arcs_percentages_A_Grid, mean_removed_arcs_percentages_B_Grid, 'G', 'mean_removed_arcs_percentage')
-  # save_image(mean_more_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_B_Grid, 'G', 'mean_more_removed_arcs_percentage')
-  #
-  # save_image(mean_computational_times_ccda_A_Random, mean_computational_times_ccda_B_Random, 'R', 'mean_computational_times_ccda')
-  # save_image(mean_computational_times_reduction_algorithm_A_Random, mean_computational_times_reduction_algorithm_B_Random,'R', 'mean_computational_times_reduction_algorithm')
-  # save_image(mean_computational_times_formulation_A_Random, mean_computational_times_formulation_B_Random, 'R','mean_computational_times_formulation_reduced')
-  # save_image(mean_computational_times_A_Random, mean_computational_times_B_Random, 'R', 'mean_computational_times')
-  # save_image(mean_gaps_A_Random, mean_gaps_B_Random, 'R', 'mean_gaps')
-  # save_image(mean_removed_nodes_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_nodes_percentage')
-  # save_image(mean_removed_arcs_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_arcs_percentage')
-  # save_image(mean_more_removed_arcs_percentages_A_Random, mean_more_removed_arcs_percentages_B_Random, 'R', 'mean_more_removed_arcs_percentage')
+  save_image(mean_computational_times_ccda_A_Grid, mean_computational_times_ccda_B_Grid, 'G', 'mean_computational_times_ccda')
+  save_image(mean_computational_times_reduction_algorithm_A_Grid, mean_computational_times_reduction_algorithm_B_Grid, 'G', 'mean_computational_times_reduction_algorithm')
+  save_image(mean_computational_times_formulation_A_Grid, mean_computational_times_formulation_B_Grid, 'G', 'mean_computational_times_formulation_reduced')
+  save_image(mean_computational_times_A_Grid, mean_computational_times_B_Grid, 'G', 'mean_computational_total_times_')
+  save_image(mean_gaps_A_Grid, mean_gaps_B_Grid, 'G', 'mean_gaps')
+  save_image(mean_removed_nodes_percentages_A_Grid, mean_removed_nodes_percentages_B_Grid, 'G', 'mean_removed_nodes_percentage')
+  save_image(mean_removed_arcs_percentages_A_Grid, mean_removed_arcs_percentages_B_Grid, 'G', 'mean_removed_arcs_percentage')
+  save_image(mean_more_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_B_Grid, 'G', 'mean_more_removed_arcs_percentage')
 
-  save_mean_results('A', 'Grid', mean_computational_times_reduction_algorithm_A_Grid,
+  save_image(mean_computational_times_ccda_A_Random, mean_computational_times_ccda_B_Random, 'R', 'mean_computational_times_ccda')
+  save_image(mean_computational_times_reduction_algorithm_A_Random, mean_computational_times_reduction_algorithm_B_Random,'R', 'mean_computational_times_reduction_algorithm')
+  save_image(mean_computational_times_formulation_A_Random, mean_computational_times_formulation_B_Random, 'R','mean_computational_times_formulation_reduced')
+  save_image(mean_computational_times_A_Random, mean_computational_times_B_Random, 'R', 'mean_computational_times')
+  save_image(mean_gaps_A_Random, mean_gaps_B_Random, 'R', 'mean_gaps')
+  save_image(mean_removed_nodes_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_nodes_percentage')
+  save_image(mean_removed_arcs_percentages_A_Random, mean_removed_nodes_percentages_B_Random, 'R', 'mean_removed_arcs_percentage')
+  save_image(mean_more_removed_arcs_percentages_A_Random, mean_more_removed_arcs_percentages_B_Random, 'R', 'mean_more_removed_arcs_percentage')
+
+  save_mean_results('A', 'Grid', mean_computational_times_reduction_algorithm_A_Grid, mean_removed_nodes_percentages_A_Grid,
                     mean_removed_arcs_percentages_A_Grid, mean_more_removed_arcs_percentages_A_Grid,
                     tot_opt_found_ccda_A_Grid, mean_computational_times_ccda_A_Grid, mean_gaps_A_Grid,
                     tot_opt_found_formulations_A_Grid, mean_costs_A_Grid,
                     mean_computational_times_complete_formulation_A_Grid, mean_computational_times_formulation_A_Grid,
                     'mean_results_A_Grid.txt')
-  save_mean_results('A', 'Random', mean_computational_times_reduction_algorithm_A_Random,
+  save_mean_results('A', 'Random', mean_computational_times_reduction_algorithm_A_Random, mean_removed_nodes_percentages_A_Random,
                     mean_removed_arcs_percentages_A_Random, mean_more_removed_arcs_percentages_A_Random,
                     tot_opt_found_ccda_A_Random, mean_computational_times_ccda_A_Random, mean_gaps_A_Random,
                     tot_opt_found_formulations_A_Random, mean_costs_A_Random,
                     mean_computational_times_complete_formulation_A_Random,
                     mean_computational_times_formulation_A_Random, 'mean_results_A_Random.txt')
-  save_mean_results('B', 'Grid', mean_computational_times_reduction_algorithm_B_Grid,
+  save_mean_results('B', 'Grid', mean_computational_times_reduction_algorithm_B_Grid, mean_removed_nodes_percentages_B_Grid,
                     mean_removed_arcs_percentages_B_Grid, mean_more_removed_arcs_percentages_B_Grid,
                     tot_opt_found_ccda_B_Grid, mean_computational_times_ccda_B_Grid, mean_gaps_B_Grid,
                     tot_opt_found_formulations_B_Grid, mean_costs_B_Grid,
                     mean_computational_times_complete_formulation_B_Grid, mean_computational_times_formulation_B_Grid,
                     'mean_results_B_Grid.txt')
-  save_mean_results('B', 'Random', mean_computational_times_reduction_algorithm_B_Random,
+  save_mean_results('B', 'Random', mean_computational_times_reduction_algorithm_B_Random, mean_removed_nodes_percentages_B_Random,
                     mean_removed_arcs_percentages_B_Random, mean_more_removed_arcs_percentages_B_Random, tot_opt_found_ccda_B_Random, mean_computational_times_ccda_B_Random,
                     mean_gaps_B_Random, tot_opt_found_formulations_B_Random, mean_costs_B_Random,
                     mean_computational_times_complete_formulation_B_Random,
