@@ -1,10 +1,10 @@
 from colour_constrained_dijkstra_algorithm import solve_colour_constrained_dijkstra
 from formulation import solve_k_cspp_formulation
-from graph_reduction_algorithm import graph_reduction
+from graph_reduction_algorithm import perform_graph_reduction
 import time
 from utils.result import Result
 
-def reduced_ILP_algorithm(instance):
+def perform_reduced_ILP_algorithm(instance):
   start_time = time.time()
   graph, source, destination, k = instance.get_parameters()
 
@@ -30,7 +30,7 @@ def reduced_ILP_algorithm(instance):
 
   print('Performing Graph Reduction algorithm...')
   start_time_reduction_algorithm = time.time()
-  reduced_graph, more_reduced_graph = graph_reduction(graph, source, destination, initial_solution)
+  reduced_graph, more_reduced_graph = perform_graph_reduction(graph, source, destination, initial_solution)
   time_reduction_algorithm = round(time.time() - start_time_reduction_algorithm, 2)
   removed_nodes_percentage = (1 - len(reduced_graph.nodes) / len(graph.nodes)) * 100
   removed_arcs_percentage = (1 - len(reduced_graph.edges) / len(graph.edges)) * 100

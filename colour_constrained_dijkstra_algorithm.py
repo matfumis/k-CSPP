@@ -76,7 +76,7 @@ def penalised_dijkstra(graph, source, destination, penalty):
         heapq.heappush(priority_queue, (actual_distance, neighbor_node))
 
   if penalised_distances[destination] == float('inf'):
-    return None, None, None
+    return None
 
   solution = Solution()
   destination_node = destination

@@ -18,7 +18,6 @@ def solve_k_cspp_formulation(graph, source, destination, k):
   k_cspp = gp.Model("kCSPP")
   k_cspp.Params.OutputFlag = 0
 
-
   x = k_cspp.addVars(arcs, vtype=GRB.BINARY, name="x")
 
   all_colours = set(colour[e] for e in arcs)
@@ -30,8 +29,8 @@ def solve_k_cspp_formulation(graph, source, destination, k):
   )
 
   for node in graph.nodes():
-    inflow = gp.quicksum(x[i, node] for i, _ in arcs if _ == node)
-    outflow = gp.quicksum(x[node, j] for _, j in arcs if _ == node)
+    inflow = gp.quicksum(x[i, node] for i, j in arcs if j == node)
+    outflow = gp.quicksum(x[node, j] for i, j in arcs if i == node)
     if node == source:
       k_cspp.addConstr(inflow - outflow == -1, name=f"flow_src_{node}")
     elif node == destination:
@@ -49,7 +48,6 @@ def solve_k_cspp_formulation(graph, source, destination, k):
 
   if k_cspp.Status != GRB.OPTIMAL:
     return None
-
 
   successive = {i: j for i, j in arcs if x[i, j].X > 0.5}
   path = [source]

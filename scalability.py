@@ -4,7 +4,7 @@ from multiprocessing import Process, Queue
 from natsort import natsorted
 from formulation import solve_k_cspp_formulation
 from k_CSPP_instance import k_CSPP_instance
-from reduced_ILP import reduced_ILP_algorithm
+from reduced_ILP import perform_reduced_ILP_algorithm
 
 def save_results_rilp(set_type, instance_type):
   instances = 'instances/SET_' + set_type + '/' + instance_type
@@ -19,7 +19,7 @@ def save_results_rilp(set_type, instance_type):
       output_file = os.path.join(results, directory, file)
 
       instance = k_CSPP_instance(input_file)
-      result = reduced_ILP_algorithm(instance)
+      result = perform_reduced_ILP_algorithm(instance)
 
       with open(output_file, 'w') as f:
         f.write(result.to_string())

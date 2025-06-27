@@ -1,4 +1,4 @@
-from parser import parse_file
+from utils.parser import parse_file
 
 class k_CSPP_instance:
   def __init__(self, file_path):
