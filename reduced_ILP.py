@@ -30,18 +30,19 @@ def perform_reduced_ILP_algorithm(instance):
 
   print('Performing Graph Reduction algorithm...')
   start_time_reduction_algorithm = time.time()
-  reduced_graph, more_reduced_graph = perform_graph_reduction(graph, source, destination, initial_solution)
+  #reduced_graph, more_reduced_graph = perform_graph_reduction(graph, source, destination, initial_solution)
+  reduced_graph = perform_graph_reduction(graph, source, destination, initial_solution)
   time_reduction_algorithm = round(time.time() - start_time_reduction_algorithm, 2)
   removed_nodes_percentage = (1 - len(reduced_graph.nodes) / len(graph.nodes)) * 100
   removed_arcs_percentage = (1 - len(reduced_graph.edges) / len(graph.edges)) * 100
 
   print(f'Reduced Graph: {reduced_graph}:\n  - removed {removed_nodes_percentage}% of nodes\n  - removed {removed_arcs_percentage}% of arcs \n')
 
-  more_removed_arcs_percentage = (1 - len(more_reduced_graph.edges) / len(reduced_graph.edges)) * 100
+  #more_removed_arcs_percentage = (1 - len(more_reduced_graph.edges) / len(reduced_graph.edges)) * 100
 
-  print(f'Removed {more_removed_arcs_percentage}% of arcs from Reduced Graph\n')
+  #print(f'Removed {more_removed_arcs_percentage}% of arcs from Reduced Graph\n')
 
-  print(f'More Reduced Graph: {more_reduced_graph}:\n')
+  #print(f'More Reduced Graph: {more_reduced_graph}:\n')
 
 
   print('Solving formulation...')
@@ -62,7 +63,8 @@ def perform_reduced_ILP_algorithm(instance):
 
   print(f'Total time: {total_time} seconds\n')
 
-  return Result(optimal_solution, time_ccda, time_reduction_algorithm, time_solver_formulation, total_time, gap, removed_nodes_percentage, removed_arcs_percentage, more_removed_arcs_percentage)
+  # return Result(optimal_solution, time_ccda, time_reduction_algorithm, time_solver_formulation, total_time, gap, removed_nodes_percentage, removed_arcs_percentage, more_removed_arcs_percentage)
+  return Result(optimal_solution, time_ccda, time_reduction_algorithm, time_solver_formulation, total_time, gap, removed_nodes_percentage, removed_arcs_percentage, None)
 
 
 def compute_gap(initial_solution, optimal_solution):

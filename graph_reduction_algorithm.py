@@ -4,9 +4,10 @@ import networkx as nx
 def perform_graph_reduction(graph, source, destination, initial_solution):
 
   reduced_graph = perform_first_reduction(graph, source, destination, initial_solution)
-  even_more_reduced_graph = perform_extra_edges_reduction(reduced_graph, source, destination, initial_solution)
+  # even_more_reduced_graph = perform_extra_edges_reduction(reduced_graph, source, destination, initial_solution)
 
-  return reduced_graph, even_more_reduced_graph
+  #return reduced_graph, even_more_reduced_graph
+  return reduced_graph
 
 
 def perform_first_reduction(graph, source, destination, initial_solution):

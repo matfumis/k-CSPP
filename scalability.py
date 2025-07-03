@@ -21,8 +21,8 @@ def save_results_rilp(set_type, instance_type):
       instance = k_CSPP_instance(input_file)
       result = perform_reduced_ILP_algorithm(instance)
 
-      with open(output_file, 'w') as f:
-        f.write(result.to_string())
+      with open(output_file, 'a') as f:
+        f.write('\n\n\nRILP Time NO EXTRA REDUCTION: ' + str(result.total_time) + '\n')
 
       print('\n=================================================================================\n\n')
 
@@ -83,15 +83,12 @@ def save_results_ilp(set_type, instance_type):
 
 
 def main():
-  save_results_rilp('A', 'Grid')
-  save_results_rilp('A', 'Random')
-  save_results_rilp('B', 'Grid')
   save_results_rilp('B', 'Random')
 
-  save_results_ilp('A', 'Grid')
-  save_results_ilp('A', 'Random')
-  save_results_ilp('B', 'Grid')
-  save_results_ilp('B', 'Random')
+  # save_results_ilp('A', 'Grid')
+  # save_results_ilp('A', 'Random')
+  # save_results_ilp('B', 'Grid')
+  # save_results_ilp('B', 'Random')
 
 if __name__ == '__main__':
   main()
